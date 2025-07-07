@@ -39,3 +39,25 @@ class GamAccount(models.Model):
 
     def __str__(self):
         return self.username
+
+
+class UnsentLetter(models.Model):
+    user = models.ForeignKey(GamAccount, on_delete=models.CASCADE, null=True, related_name='user_letter')
+    sender = models.CharField(max_length=200)
+    receiver = models.CharField(max_length=200)  # REMOVE
+    letter_id = models.CharField(max_length=10)
+    sent_time = models.CharField(max_length=300)
+    date_received = models.DateTimeField(auto_now_add=True)
+    sent = models.BooleanField(default=False)  # does this sent to user's desktop !?
+
+    def __str__(self):
+        return f"{self.sender} sent a letter to {self.receiver}"
+
+
+class LetterArchive(models.Model):
+    user = models.ForeignKey(GamAccount, on_delete=models.CASCADE)
+    letter_id = models.CharField(max_length=10, db_index=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.letter_id} shipping time is {self.created_at}"

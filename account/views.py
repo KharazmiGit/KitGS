@@ -1,43 +1,41 @@
-from django.db.models import Count, Q
-from django.shortcuts import render
-import requests
-from django.http import JsonResponse
+from django.shortcuts import render, redirect
+from django.views import View
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_protect
 
-from account.models import GamAccount , UnsentLetter
+
+@method_decorator([never_cache, csrf_protect], name='dispatch')
+class LoginPage(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('core_app:landing-page')
+        return render(request, 'login.html')
+
+    def post(self, request):
+        username = request.POST.get('uname')
+        password = request.POST.get('psw')
+        remember_me = request.POST.get('remember') == 'on'
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            if not remember_me:
+                # Set session to expire when browser closes
+                request.session.set_expiry(0)
+            return redirect('core_app:landing-page')
+        else:
+            messages.error(request, 'Invalid username or password')
+            return redirect('account_app:login')
 
 
-def letter_delivery(request):
-    # Annotate only unsent letters per user
-    user_data = GamAccount.objects.annotate(
-        letter_count=Count('user_letter', filter=Q(user_letter__sent=False))
-    ).filter(
-        letter_count__gt=0
-    )
-
-    user_info = []
-    for user in user_data:
-        user_info.append({
-            "username": user.username,
-            "letter_count": user.letter_count,
-            "desktop_ip": user.desktop_ip
-        })
-
-        UnsentLetter.objects.filter(user=user, sent=False).update(sent=True)
-
-    # Send notifications
-    for user in user_info:
-        print('send notif')
-        try:
-            response = requests.post(
-                f"http://{user['desktop_ip']}:5000",
-                json={
-                    'letter_count': user['letter_count'],
-                    'username': user['username']
-                },
-                timeout=5
-            )
-            response.raise_for_status()
-        except requests.RequestException as e:
-            print(f"Failed to send notification to {user['username']}: {e}")
-
-    return JsonResponse(user_info, safe=False)
+@method_decorator(login_required, name='dispatch')
+class LogoutPage(View):
+    def get(self, request):
+        logout(request)
+        return redirect('account_app:login')

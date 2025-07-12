@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class LoginPage(View):
+
+
+class LandingPageView(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'login.html')
+        return render(request, 'index.html')

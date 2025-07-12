@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-j163*-0rhe7-hx!ct&9#u(iv6ygm!42zki^+z4d988+@p3kb+n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.3.25','127.0.0.1' , '192.168.100.20']
+ALLOWED_HOSTS = ['192.168.3.25', '127.0.0.1', '192.168.100.20']
 
 # Application definition
 
@@ -42,6 +42,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'KitGS.urls'
+
+LOGIN_URL = '/accounts/login/'
 
 TEMPLATES = [
     {
@@ -108,10 +110,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
-
-STATIC_URL = 'static/'
-
-# Default primary key field type
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

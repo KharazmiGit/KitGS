@@ -68,19 +68,16 @@ WSGI_APPLICATION = 'KitGS.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mssql',
-        'NAME': 'F_KHARAZMI',
-        'USER': 'CompUser',
-        'PASSWORD': 'qaz@123',
-        'HOST': '192.168.100.206',
-        'PORT': '1433',
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        },
-    },
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'kitgsdb',
+        'USER': 'avatar',
+        'PASSWORD': 'K__40338__h',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
 }
 
-# Password validation
+
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [

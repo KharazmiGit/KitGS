@@ -8,7 +8,6 @@ class CustomMiddleware(MiddlewareMixin):
             '/accounts/login',
             '/accounts/logout',
             '/landing',
-            '/admin',
         ]
 
         # Get the base path without query parameters
@@ -18,12 +17,8 @@ class CustomMiddleware(MiddlewareMixin):
         print(f"Path: {base_path}")
         print(f"Authenticated: {request.user.is_authenticated}")
 
-        if request.user.is_authenticated:
-            # Only allow exact matches for exempt paths
-            if not any(base_path == path or base_path == path + '/' for path in exempt_paths):
-                print('Redirecting to landing page')
-                return redirect('core_app:landing-page')
-            else:
-                print('Not redirecting - exact path match')
-        else:
+        if request.user.is_authenticated : 
+            print("we are tracking the user")
+        elif not any(base_path == path or base_path == path + '/' for path in exempt_paths):
             print('Not redirecting - not authenticated')
+            return redirect('core_app:landing-page')

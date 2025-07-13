@@ -83,11 +83,10 @@ def scrape_letters_for_user(user_id):
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
-    options.add_argument("--window-size=1920,1080")
+    options.binary_location = "/usr/bin/firefox"
 
     try:
-        service = Service(executable_path=GeckoDriverManager().install())
-        wd = webdriver.Firefox(service=service, options=options)
+        service = Service(executable_path="/usr/local/bin/geckodriver")
     except Exception as e:
         logger.error(f"WebDriver init failed for {user.username}: {str(e)}")
         return {"status": "error", "message": "Browser setup failed"}

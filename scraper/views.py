@@ -56,8 +56,9 @@ def letter_delivery(request):
 
 def scrape_letters_for_user(username, password, user_id):
     options = Options()
-    # options.add_argument("--headless")
-    service = Service(executable_path="C:\\Users\\k.foroozanfard\\Desktop\\geckodriver.exe")
+    options.add_argument("--headless")
+    options.binary_location = "/usr/bin/firefox"
+    service = Service(executable_path="/usr/local/bin/geckodriver")
     wd = webdriver.Firefox(service=service, options=options)
     try:
         wd.get("http://kitgam.kharazmico.com")

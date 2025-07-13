@@ -10,6 +10,7 @@
     <title>Kit Robot factory</title>
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'dist/css/style.css' %}">
+    <link rel="icon" href="{% static 'landing/img/Kharazmi.ico' %}">
     <script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 </head>
@@ -21,7 +22,7 @@
                 <div class="brand header-brand">
                     <h1 class="m-0">
                         <a href="#">
-                            <img class="header-logo-image" src="{% static 'dist/images/logo.svg' %}" alt="Logo">
+                            <img class="header-logo-image" src="{% static 'landing/images/logo.svg' %}" alt="Logo">
                         </a>
                     </h1>
                 </div>
@@ -34,7 +35,7 @@
             <div class="container">
                 <div class="hero-inner">
                     <div class="hero-copy">
-                        <h1 class="hero-title mt-0">Landing Robot(s) for testing</h1>
+                        <h1 class="hero-title mt-0">Robot factory</h1>
                         <p class="hero-paragraph">“Our landing page showcases all the bots developed by our team.</p>
                         <div class="hero-cta"><a class="button button-primary" href="/admin">Database</a><a
                                 class="button" href="/accounts/logout/">logout</a></div>
@@ -65,7 +66,7 @@
                         <div class="feature text-center is-revealing">
                             <div class="feature-inner">
                                 <div class="feature-icon">
-                                    <img src="{% static 'dist/images/feature-icon-04.svg' %}" alt="Feature 04">
+                                    <img src="{% static 'landing/images/feature-icon-04.svg' %}" alt="Feature 04">
                                 </div>
                                 <h4 class="feature-title mt-24"><a style="text-decoration: none" href="{% url 'scraper_app:scraper' %}">Gam
                                     scrapper</a></h4>
@@ -86,7 +87,7 @@
             <div class="site-footer-inner">
                 <div class="brand footer-brand">
                     <a href="#">
-                        <img class="header-logo-image" src="{% static 'dist/images/logo.svg' %}" alt="Logo">
+                        <img class="header-logo-image" src="{% static 'landing/images/logo.svg' %}" alt="Logo">
                     </a>
                 </div>
                 <ul class="footer-links list-reset">

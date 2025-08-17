@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Register Form</title>
+    <link rel="stylesheet" href="{% static 'css/account/login.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+    <link rel="icon" href="{% static 'icon/Kharazmi.ico' %}">
+</head>
+<body>
+<div class="top-bar">
+    <a style="text-decoration: none" href="{% url 'core_app:landing-page' %}" class="back-button">← Back</a>
+    <img src="{% static 'icon/Kharazmi.ico' %}" alt="Logo" class="logo">
+</div>
+
+<div class="content">
+    <div class="text">Register Form</div>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="POST" action="{% url 'account_app:register_gam_user' %}">
+        {% csrf_token %}
+        <div class="field">
+            <input type="text" id="username" name="username" value="{{ request.POST.username }}" required>
+            <span class="fas fa-user"></span>
+            <label for="username">Username</label>
+        </div>
+        <br>
+        <div class="field">
+            <input type="text" id="ip" name="ip" value="{{ request.POST.ip }}" required>
+            <span class="fas fa-desktop"></span>
+            <label for="ip">Desktop IP</label>
+        </div>
+        <br>
+        <div class="field">
+            <input type="password" id="password" name="password" required>
+            <span class="fas fa-lock"></span>
+            <label for="password">Password</label>
+        </div>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>

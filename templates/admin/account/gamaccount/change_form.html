@@ -1,0 +1,49 @@
+{% extends "admin/change_form.html" %}
+{% block extrahead %}
+    {{ block.super }}
+    <style>
+        .password-toggle {
+            position: relative;
+        }
+
+        .password-toggle input {
+            padding-right: 30px;
+        }
+
+        .password-toggle .toggle-eye {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordField = document.querySelector('#id_gam_password');
+            if (passwordField) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'password-toggle';
+                passwordField.parentNode.insertBefore(wrapper, passwordField);
+                wrapper.appendChild(passwordField);
+
+                const eye = document.createElement('span');
+                eye.className = 'toggle-eye';
+                eye.innerHTML = '👁️';
+                wrapper.appendChild(eye);
+
+                eye.addEventListener('click', function () {
+                    passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
+                });
+            }
+        });
+
+    </script>
+{% endblock %}
+
+

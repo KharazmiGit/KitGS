@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_protect
 from . import models
 from time import sleep
 
+
 @method_decorator([never_cache, csrf_protect], name='dispatch')
 class LoginPage(View):
     def get(self, request):
@@ -61,5 +62,5 @@ class RegisterGamUserC(View):
         new_user.save()
 
         messages.success(request, "Registration successful.")
-        sleep(3)
+        sleep(1.5)
         return redirect('account_app:register_gam_user')

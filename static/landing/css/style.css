@@ -413,7 +413,7 @@ h4, h5, h6, .h4, .h5, .h6 {
 }
 
 .text-light h1, .text-light h2, .text-light h3, .text-light h4, .text-light h5, .text-light h6, .text-light .h1, .text-light .h2, .text-light .h3, .text-light .h4, .text-light .h5, .text-light .h6 {
-    color: !important
+    color: brown!important
 }
 
 .text-sm {
@@ -527,6 +527,7 @@ b, strong {
 button, input, select, textarea, label {
     font-size: 20px;
     line-height: 30px
+
 }
 
 .container, .container-sm {

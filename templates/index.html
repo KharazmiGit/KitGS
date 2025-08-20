@@ -37,8 +37,20 @@
                         <h1 class="hero-title mt-0">Kit bot factory</h1>
                         <p class="hero-paragraph">“Our landing page showcases all the bots developed by our team.</p>
                         <div class="hero-cta"><a class="button button-primary"
-                                                 href="{% url 'account_app:register_gam_user' %}">Register</a><a
-                                class="button" href="{% url 'account_app:logout' %}">logout</a></div>
+                                                 href="http://127.0.0.1:8000/admin/">Admin panel</a>
+                            <a
+                                    class="button" href="{% url 'account_app:logout' %}">logout</a>
+                        </div>
+
+                    </div>
+{#                    <div class="hero-copy">#}
+{#                        <br><br><br>#}
+{#                        <br><br>#}
+{#                        <div  class="hero-cta"><a style="margin-right: 300px" class="button button-primary"#}
+{#                                                 href="{% url 'account_app:register_gam_user' %}">Register</a>#}
+{##}
+{#                        </div>#}
+
                     </div>
                     <div class="hero-figure anime-element">
                         <svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">
@@ -91,8 +103,6 @@
                         <img class="header-logo-image" src="{% static 'landing/images/logo.svg' %}" alt="Logo">
                     </a>
                 </div>
-
-
             </div>
         </div>
     </footer>
